@@ -1,0 +1,8 @@
+document_id,scope_id,kind,amount,date
+Q1,S1,quote,500,2026-10-10
+I1,S1,invoice,520,2026-10-18
+P1,S1,payment,520,2026-10-20
+Q2,S2,quote,800,2026-10-10
+I2,S2,invoice,850,2026-10-20
+Q3,S3,quote,300,2026-10-12
+I4,S4,invoice,100,2026-10-18

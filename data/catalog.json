@@ -1,0 +1,462 @@
+{
+  "title": "空铁公联运的履约成本仓",
+  "synthetic": true,
+  "tables": [
+    {
+      "name": "orders",
+      "description": "客户服务约定。",
+      "columns": [
+        {
+          "name": "order_id",
+          "type": "string",
+          "description": "订单",
+          "nullable": true
+        },
+        {
+          "name": "customer",
+          "type": "string",
+          "description": "客户",
+          "nullable": true
+        },
+        {
+          "name": "total_kg",
+          "type": "number",
+          "description": "总kg",
+          "nullable": true
+        },
+        {
+          "name": "revenue_amount",
+          "type": "number",
+          "description": "总收入",
+          "nullable": true
+        },
+        {
+          "name": "currency",
+          "type": "string",
+          "description": "币种",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "order_id"
+      ],
+      "references": [],
+      "path": "data/orders.csv",
+      "row_count": 3,
+      "sha256": "091d949007d0adbb0ebf818b7dd9e6e0614860161147b543a28bcb8e6b4c12bb"
+    },
+    {
+      "name": "cargo",
+      "description": "数量分支。",
+      "columns": [
+        {
+          "name": "cargo_id",
+          "type": "string",
+          "description": "实物流",
+          "nullable": true
+        },
+        {
+          "name": "parent",
+          "type": "string",
+          "description": "父流",
+          "nullable": true
+        },
+        {
+          "name": "weight_kg",
+          "type": "number",
+          "description": "重量",
+          "nullable": true
+        },
+        {
+          "name": "volume_m3",
+          "type": "number",
+          "description": "体积",
+          "nullable": true
+        },
+        {
+          "name": "split_at",
+          "type": "datetime",
+          "description": "拆分",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "cargo_id"
+      ],
+      "references": [
+        {
+          "column": "parent",
+          "target_table": "cargo",
+          "target_column": "cargo_id"
+        }
+      ],
+      "path": "data/cargo.csv",
+      "row_count": 5,
+      "sha256": "6877e29c01b5d41c7f8b6b89736ed85a540ade73a088b652e7e972a6cbd35f6a"
+    },
+    {
+      "name": "orders_bridge",
+      "description": "订单实物归属。",
+      "columns": [
+        {
+          "name": "bridge_id",
+          "type": "string",
+          "description": "关联",
+          "nullable": true
+        },
+        {
+          "name": "order_id",
+          "type": "string",
+          "description": "订单",
+          "nullable": true
+        },
+        {
+          "name": "cargo_id",
+          "type": "string",
+          "description": "实物流",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "bridge_id"
+      ],
+      "references": [
+        {
+          "column": "order_id",
+          "target_table": "orders",
+          "target_column": "order_id"
+        },
+        {
+          "column": "cargo_id",
+          "target_table": "cargo",
+          "target_column": "cargo_id"
+        }
+      ],
+      "path": "data/orders_bridge.csv",
+      "row_count": 3,
+      "sha256": "bf1c8adf69266d4e10088021ba49628a4bb1eb38f087f00546d48cc1bc96073b"
+    },
+    {
+      "name": "legs",
+      "description": "实际或预订服务段。",
+      "columns": [
+        {
+          "name": "leg_id",
+          "type": "string",
+          "description": "段",
+          "nullable": true
+        },
+        {
+          "name": "mode",
+          "type": "string",
+          "description": "方式",
+          "nullable": true
+        },
+        {
+          "name": "origin",
+          "type": "string",
+          "description": "起",
+          "nullable": true
+        },
+        {
+          "name": "destination",
+          "type": "string",
+          "description": "止",
+          "nullable": true
+        },
+        {
+          "name": "start",
+          "type": "datetime",
+          "description": "起时",
+          "nullable": true
+        },
+        {
+          "name": "end",
+          "type": "datetime",
+          "description": "止时",
+          "nullable": true
+        },
+        {
+          "name": "km",
+          "type": "number",
+          "description": "距离",
+          "nullable": true
+        },
+        {
+          "name": "state",
+          "type": "string",
+          "description": "actual或cancelled",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "leg_id"
+      ],
+      "references": [],
+      "path": "data/legs.csv",
+      "row_count": 5,
+      "sha256": "f3a55f53b07a4d7c7b3c0310629939cc07a26838608a7ae75901459d9bbf20df"
+    },
+    {
+      "name": "actual_loads",
+      "description": "已装载事实。",
+      "columns": [
+        {
+          "name": "load_id",
+          "type": "string",
+          "description": "装载",
+          "nullable": true
+        },
+        {
+          "name": "leg_id",
+          "type": "string",
+          "description": "段",
+          "nullable": true
+        },
+        {
+          "name": "cargo_id",
+          "type": "string",
+          "description": "流",
+          "nullable": true
+        },
+        {
+          "name": "weight_kg",
+          "type": "number",
+          "description": "kg",
+          "nullable": true
+        },
+        {
+          "name": "volume_m3",
+          "type": "number",
+          "description": "m3",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "load_id"
+      ],
+      "references": [
+        {
+          "column": "leg_id",
+          "target_table": "legs",
+          "target_column": "leg_id"
+        },
+        {
+          "column": "cargo_id",
+          "target_table": "cargo",
+          "target_column": "cargo_id"
+        }
+      ],
+      "path": "data/actual_loads.csv",
+      "row_count": 7,
+      "sha256": "8b53b319f495cb75d78d5aab7631eef48bc068091acbf6fe2e60b86e425775af"
+    },
+    {
+      "name": "cost_scopes",
+      "description": "共享账单与报价范围。",
+      "columns": [
+        {
+          "name": "scope_id",
+          "type": "string",
+          "description": "范围",
+          "nullable": true
+        },
+        {
+          "name": "leg_id",
+          "type": "string",
+          "description": "段",
+          "nullable": true
+        },
+        {
+          "name": "basis",
+          "type": "string",
+          "description": "charge_weight或volume或fixed",
+          "nullable": true
+        },
+        {
+          "name": "volumetric_kg_m3",
+          "type": "number",
+          "description": "体积折算",
+          "nullable": true
+        },
+        {
+          "name": "rate",
+          "type": "number",
+          "description": "单价",
+          "nullable": true
+        },
+        {
+          "name": "minimum",
+          "type": "number",
+          "description": "最低费",
+          "nullable": true
+        },
+        {
+          "name": "currency",
+          "type": "string",
+          "description": "币种",
+          "nullable": true
+        },
+        {
+          "name": "caused_order",
+          "type": "string",
+          "description": "取消归因或空",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "scope_id"
+      ],
+      "references": [
+        {
+          "column": "leg_id",
+          "target_table": "legs",
+          "target_column": "leg_id"
+        },
+        {
+          "column": "caused_order",
+          "target_table": "orders",
+          "target_column": "order_id"
+        }
+      ],
+      "path": "data/cost_scopes.csv",
+      "row_count": 4,
+      "sha256": "70ad135b8c76a95b0e149785ad2f3c6a5827be5568640498547c712f855d7fd6"
+    },
+    {
+      "name": "cost_documents",
+      "description": "正式账单金额优先于预估，价差可解释而不改写原单价。",
+      "columns": [
+        {
+          "name": "document_id",
+          "type": "string",
+          "description": "单据",
+          "nullable": true
+        },
+        {
+          "name": "scope_id",
+          "type": "string",
+          "description": "范围",
+          "nullable": true
+        },
+        {
+          "name": "kind",
+          "type": "string",
+          "description": "quote或invoice或payment",
+          "nullable": true
+        },
+        {
+          "name": "amount",
+          "type": "number",
+          "description": "币种金额",
+          "nullable": true
+        },
+        {
+          "name": "date",
+          "type": "date",
+          "description": "发生日",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "document_id"
+      ],
+      "references": [
+        {
+          "column": "scope_id",
+          "target_table": "cost_scopes",
+          "target_column": "scope_id"
+        }
+      ],
+      "path": "data/cost_documents.csv",
+      "row_count": 7,
+      "sha256": "cc4233f1aa26890c1c0bd308c087fcd21c40f7b47e7d60f15519f9cdffc83205"
+    },
+    {
+      "name": "delivery_receipts",
+      "description": "实际交付份额。",
+      "columns": [
+        {
+          "name": "receipt_id",
+          "type": "string",
+          "description": "回执",
+          "nullable": true
+        },
+        {
+          "name": "order_id",
+          "type": "string",
+          "description": "订单",
+          "nullable": true
+        },
+        {
+          "name": "cargo_id",
+          "type": "string",
+          "description": "流",
+          "nullable": true
+        },
+        {
+          "name": "weight_kg",
+          "type": "number",
+          "description": "kg",
+          "nullable": true
+        },
+        {
+          "name": "at",
+          "type": "datetime",
+          "description": "时点",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "receipt_id"
+      ],
+      "references": [
+        {
+          "column": "order_id",
+          "target_table": "orders",
+          "target_column": "order_id"
+        },
+        {
+          "column": "cargo_id",
+          "target_table": "cargo",
+          "target_column": "cargo_id"
+        }
+      ],
+      "path": "data/delivery_receipts.csv",
+      "row_count": 2,
+      "sha256": "8fd198afb5a0a0ae8edebf4c1fdfe8abd63848b6536a583432e51740d9f0f796"
+    },
+    {
+      "name": "fx",
+      "description": "内部每日可用汇率，CNY恒为1；无当天值不可擅自插值。",
+      "columns": [
+        {
+          "name": "currency",
+          "type": "string",
+          "description": "币种",
+          "nullable": true
+        },
+        {
+          "name": "date",
+          "type": "date",
+          "description": "日期",
+          "nullable": true
+        },
+        {
+          "name": "cny_per_unit",
+          "type": "number",
+          "description": "人民币每单位",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "currency",
+        "date"
+      ],
+      "references": [],
+      "path": "data/fx.csv",
+      "row_count": 4,
+      "sha256": "9d76e560503e7330194fe66aacf751d102797381ff05c18c01db1d8066d40434"
+    }
+  ]
+}

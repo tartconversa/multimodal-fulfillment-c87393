@@ -1,0 +1,8 @@
+load_id,leg_id,cargo_id,weight_kg,volume_m3
+A1,L1,G1,100,1
+A2,L1,G2,80,0.5
+A3,L2,G1A,60,0.6
+A4,L2,G2,80,0.5
+A5,L3,G1B,40,0.4
+A6,L4,G1A,60,0.6
+A7,L4,G2,80,0.5

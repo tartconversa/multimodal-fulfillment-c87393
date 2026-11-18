@@ -1,0 +1,3 @@
+receipt_id,order_id,cargo_id,weight_kg,at
+D1,O1,G1A,60,2026-10-16T18:00:00+08:00
+D2,O2,G2,80,2026-10-16T18:00:00+08:00
