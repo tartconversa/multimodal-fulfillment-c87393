@@ -1,0 +1,15 @@
+README.md
+pyproject.toml
+sourcepack/__init__.py
+sourcepack/__main__.py
+sourcepack/catalog.py
+sourcepack/domain.py
+sourcepack/ingest.py
+sourcepack/queries.py
+sourcepack/warehouse.py
+sourcepack.egg-info/PKG-INFO
+sourcepack.egg-info/SOURCES.txt
+sourcepack.egg-info/dependency_links.txt
+sourcepack.egg-info/requires.txt
+sourcepack.egg-info/top_level.txt
+tests/test_sources.py

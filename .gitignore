@@ -10,3 +10,9 @@ coverage/
 __pycache__/
 *.py[cod]
 .DS_Store
+# 运行产物：DuckDB 库文件与每批接收的原始文件归档
+runs/
+*.duckdb
+*.duckdb.wal
+archive/
+sourcepack.egg-info/

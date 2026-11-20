@@ -1,0 +1,6 @@
+leg_id,mode,origin,destination,start,end,km,state
+L1,road,warehouse,hub,2026-10-10T08:00:00+08:00,2026-10-11T08:00:00+08:00,100,actual
+L2,air,hub,port,2026-10-13T08:00:00+08:00,2026-10-13T12:00:00+08:00,800,actual
+L3,rail,hub,port,2026-10-13T08:00:00+08:00,2026-10-15T08:00:00+08:00,1000,actual
+L4,road,port,client,2026-10-16T08:00:00+08:00,2026-10-16T18:00:00+08:00,80,actual
+L5,air,hub,port,2026-10-12T08:00:00+08:00,2026-10-12T12:00:00+08:00,800,cancelled

@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=66"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sourcepack"
+version = "0.2.0"
+description = "空铁公联运履约成本仓：资料接收、差异核实与履约查询"
+requires-python = ">=3.11"
+dependencies = ["duckdb==1.4.1"]
+
+[tool.setuptools]
+packages = ["sourcepack"]

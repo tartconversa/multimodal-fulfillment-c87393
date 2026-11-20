@@ -1,0 +1,5 @@
+scope_id,leg_id,basis,volumetric_kg_m3,rate,minimum,currency,caused_order
+S1,L1,charge_weight,167,2,500,CNY,
+S2,L2,charge_weight,167,3,800,USD,
+S3,L3,volume,167,600,300,CNY,
+S4,L5,fixed,167,100,100,USD,O1

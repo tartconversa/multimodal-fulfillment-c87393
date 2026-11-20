@@ -1,0 +1,4 @@
+order_id,customer,total_kg,revenue_amount,currency
+O1,C1,100,2000,CNY
+O2,C2,80,1200,CNY
+O3,C3,40,800,CNY
